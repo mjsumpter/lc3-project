@@ -63,3 +63,26 @@ enum
     FL_ZRO = 1 << 1, /* Z */
     FL_NEG = 1 << 2, /* N */
 };
+
+int main(int argc, const char* argv[])
+{
+    //Load arguments 12
+    //Setup 12
+
+    /* set the PC to starting position */
+    /* 0x3000 is the default */
+    enum{ PC_START = 0x3000 };
+    reg[R_PC] = PC_START;
+
+    int running = 1;
+    while (running)
+    {
+        /* FETCH */
+        uint16_t instr = mem_read(reg[R_PC]++);
+        uint16_t op = instr >> 12;
+
+        switch (op)
+        {}
+    }
+    // shutdown 12
+}
