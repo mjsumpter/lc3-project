@@ -142,3 +142,14 @@ void update_flags(uint16_t r)
 
     update_flags(r0);
 }
+
+// LOAD INDIRECT OP
+{
+    /* destination register (DR) */
+    uint16_t r0 = (instr >> 9) & 0x7;
+    /* PCoffset 9*/
+    uint16_t pc_offset = sign_extend(instr & 0x1ff, 9);
+    /* add pc_offset to the current PC, look at that memory location to get the final address */
+    reg[r0] = mem_read(mem_read(reg[R_PC] + pc_offset));
+    update_flags(r0);
+}
